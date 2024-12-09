@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('social_links', function (Blueprint $table) {
+            $table->id();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullbale();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('youtube')->nullable();
+        });
+        DB::table('social_links')->insert([
+            'facebook' => 'https://www.facebook.com/easysteps/',
+            'twitter' => 'https://twitter.com/easysteps',
+            'instagram' => 'https://www.instagram.com/easysteps/',
+            'youtube' => 'https://www.youtube.com/easysteps',
+        ]);
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('social_links');
+    }
+};
